@@ -2,6 +2,9 @@ package it.handart.backend.api;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import it.handart.backend.domain.response.ArtworkResponse;
+import org.apache.tomcat.util.json.JSONParser;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -30,7 +33,7 @@ public class ArtworksController {
     private String url;
 
     @RequestMapping("/artwork")
-    public HttpResponse getArtwork() throws IOException, InterruptedException {
+    public String getArtwork() throws IOException, InterruptedException, JSONException {
 
         /*
             RestTemplate restTemplate = new RestTemplate(); //1
@@ -46,16 +49,16 @@ public class ArtworksController {
                     = restTemplate.postForObject(url, entity,  String.class); //3
 
             System.out.println(response);
-        return  response;*/
+            return  response;*/
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create( url + "/artworks?size=1"))
+                .uri(URI.create( url + "/artworks?size=500"))
                 .headers("X-XAPP-Token", Token)
                 .build();
         HttpResponse response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-        return response;
+        return response.body().toString();
     }
 
 
