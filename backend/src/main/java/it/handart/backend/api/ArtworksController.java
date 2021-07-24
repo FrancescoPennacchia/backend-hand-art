@@ -26,6 +26,9 @@ public class ArtworksController {
     @Value("${artsy.X-XAPP-Token}")
     private String Token;
 
+    @Value("${artsy.url}")
+    private String url;
+
     @RequestMapping("/artwork")
     public HttpResponse getArtwork() throws IOException, InterruptedException {
 
@@ -47,7 +50,7 @@ public class ArtworksController {
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://api.artsy.net/api/artworks?size=1"))
+                .uri(URI.create( url + "/artworks?size=1"))
                 .headers("X-XAPP-Token", Token)
                 .build();
         HttpResponse response = client.send(request, HttpResponse.BodyHandlers.ofString());
