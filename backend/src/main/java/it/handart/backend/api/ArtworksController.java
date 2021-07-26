@@ -1,26 +1,19 @@
 package it.handart.backend.api;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import it.handart.backend.domain.response.ArtworkResponse;
-import org.apache.tomcat.util.json.JSONParser;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 import java.net.URI;
-import java.net.URL;
+
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.Collections;
+
 
 @RestController
 @RequestMapping("/api")
@@ -32,8 +25,86 @@ public class ArtworksController {
     @Value("${artsy.url}")
     private String url;
 
-    @RequestMapping("/artwork")
-    public String getArtwork() throws IOException, InterruptedException, JSONException {
+    /* Richiesta lista artworks per size */
+    @RequestMapping("/artworks/size")
+    public String getArtworksBySize(@RequestParam int size) throws IOException, InterruptedException {
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create( url + "/artworks/?size=" + size ))
+                .headers("X-XAPP-Token", Token)
+                .build();
+        HttpResponse response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        return response.body().toString();
+    }
+
+    /* Richiesta lista artworks */
+    @RequestMapping("/artworks")
+    public String getArtworks() throws IOException, InterruptedException {
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create( url + "/artworks/?size=50"))
+                .headers("X-XAPP-Token", Token)
+                .build();
+        HttpResponse response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        return response.body().toString();
+    }
+
+    /* Richiesta per singolo Artwork */
+    @RequestMapping("/artwork/{idArtwork}")
+    public String getArtworkById(@PathVariable String idArtwork) throws IOException, InterruptedException {
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create( url + "/artworks/" + idArtwork))
+                .headers("X-XAPP-Token", Token)
+                .build();
+        HttpResponse response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        return response.body().toString();
+    }
+
+    /* Richiesta per singolo Artwork random */
+    @RequestMapping("/artwork/sample")
+    public String getRandomArtwork() throws IOException, InterruptedException {
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create( url + "/artworks/?sample="))
+                .headers("X-XAPP-Token", Token)
+                .build();
+        HttpResponse response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        return response.body().toString();
+    }
+
+    /* Richiesta lista artworks in base all'ordine */
+    @RequestMapping("/artworks/sort")
+    public String getArtworksBySort(@RequestParam String sort) throws IOException, InterruptedException {
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create( url + "/artworks/?sort=" + sort ))
+                .headers("X-XAPP-Token", Token)
+                .build();
+        HttpResponse response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        return response.body().toString();
+    }
+
+    /* Richiesta lista artworks per offset */
+    @RequestMapping("/artworks/offset")
+    public String getArtworksByOffset(@RequestParam int offset) throws IOException, InterruptedException {
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create( url + "/artworks/?offset=" + offset ))
+                .headers("X-XAPP-Token", Token)
+                .build();
+        HttpResponse response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        return response.body().toString();
+    }
+
+}
+
 
         /*
             RestTemplate restTemplate = new RestTemplate(); //1
@@ -50,16 +121,3 @@ public class ArtworksController {
 
             System.out.println(response);
             return  response;*/
-
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create( url + "/artworks?size=500"))
-                .headers("X-XAPP-Token", Token)
-                .build();
-        HttpResponse response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
-        return response.body().toString();
-    }
-
-
-}
