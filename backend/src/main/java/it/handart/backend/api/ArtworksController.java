@@ -22,8 +22,11 @@ public class ArtworksController {
     @Value("${artsy.X-XAPP-Token}")
     private String Token;
 
-    @Value("${artsy.url}")
-    private String url;
+    @Value("${artsy.rest.url}")
+    private String url_rest;
+
+    @Value("${artsy.graphql.url}")
+    private String url_graphql;
 
     /* PARTE DEDICATA ALLE CHIAMATE REST */
     /* Richiesta lista artworks per size */
@@ -31,7 +34,7 @@ public class ArtworksController {
     public String getArtworksBySize(@RequestParam int size) throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create( url + "/artworks/?size=" + size ))
+                .uri(URI.create( url_rest + "/artworks/?size=" + size ))
                 .headers("X-XAPP-Token", Token)
                 .build();
         HttpResponse response = client.send(request, HttpResponse.BodyHandlers.ofString());
@@ -44,7 +47,7 @@ public class ArtworksController {
     public String getArtworks() throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create( url + "/artworks/?size=50"))
+                .uri(URI.create( url_rest + "/artworks/?size=50"))
                 .headers("X-XAPP-Token", Token)
                 .build();
         HttpResponse response = client.send(request, HttpResponse.BodyHandlers.ofString());
@@ -57,7 +60,7 @@ public class ArtworksController {
     public String getArtworkById(@PathVariable String idArtwork) throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create( url + "/artworks/" + idArtwork))
+                .uri(URI.create( url_rest + "/artworks/" + idArtwork))
                 .headers("X-XAPP-Token", Token)
                 .build();
         HttpResponse response = client.send(request, HttpResponse.BodyHandlers.ofString());
@@ -70,7 +73,7 @@ public class ArtworksController {
     public String getRandomArtwork() throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create( url + "/artworks/?sample="))
+                .uri(URI.create( url_rest + "/artworks/?sample="))
                 .headers("X-XAPP-Token", Token)
                 .build();
         HttpResponse response = client.send(request, HttpResponse.BodyHandlers.ofString());
@@ -83,7 +86,7 @@ public class ArtworksController {
     public String getArtworksBySort(@RequestParam String sort) throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create( url + "/artworks/?sort=" + sort ))
+                .uri(URI.create( url_rest + "/artworks/?sort=" + sort ))
                 .headers("X-XAPP-Token", Token)
                 .build();
         HttpResponse response = client.send(request, HttpResponse.BodyHandlers.ofString());
@@ -96,7 +99,7 @@ public class ArtworksController {
     public String getArtworksByOffset(@RequestParam int offset) throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create( url + "/artworks/?offset=" + offset ))
+                .uri(URI.create( url_rest + "/artworks/?offset=" + offset ))
                 .headers("X-XAPP-Token", Token)
                 .build();
         HttpResponse response = client.send(request, HttpResponse.BodyHandlers.ofString());
