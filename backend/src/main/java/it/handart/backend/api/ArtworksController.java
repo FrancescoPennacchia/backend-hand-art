@@ -25,8 +25,9 @@ public class ArtworksController {
     @Value("${artsy.url}")
     private String url;
 
+    /* PARTE DEDICATA ALLE CHIAMATE REST */
     /* Richiesta lista artworks per size */
-    @RequestMapping("/artworks/size")
+    @RequestMapping("/rest/artworks/size")
     public String getArtworksBySize(@RequestParam int size) throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -39,7 +40,7 @@ public class ArtworksController {
     }
 
     /* Richiesta lista artworks */
-    @RequestMapping("/artworks")
+    @RequestMapping("/rest/artworks")
     public String getArtworks() throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -52,7 +53,7 @@ public class ArtworksController {
     }
 
     /* Richiesta per singolo Artwork */
-    @RequestMapping("/artwork/{idArtwork}")
+    @RequestMapping("/rest/artwork/{idArtwork}")
     public String getArtworkById(@PathVariable String idArtwork) throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -65,7 +66,7 @@ public class ArtworksController {
     }
 
     /* Richiesta per singolo Artwork random */
-    @RequestMapping("/artwork/sample")
+    @RequestMapping("/rest/artwork/sample")
     public String getRandomArtwork() throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -78,7 +79,7 @@ public class ArtworksController {
     }
 
     /* Richiesta lista artworks in base all'ordine */
-    @RequestMapping("/artworks/sort")
+    @RequestMapping("/rest/artworks/sort")
     public String getArtworksBySort(@RequestParam String sort) throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -91,7 +92,7 @@ public class ArtworksController {
     }
 
     /* Richiesta lista artworks per offset */
-    @RequestMapping("/artworks/offset")
+    @RequestMapping("/rest/artworks/offset")
     public String getArtworksByOffset(@RequestParam int offset) throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -103,9 +104,12 @@ public class ArtworksController {
         return response.body().toString();
     }
 
+    /* PARTE DEDICATA ALLE CHIAMATE GRAPHQL */
+
 }
 
 
+        /* VECCHIO CODICE DI RICHIESTA */
         /*
             RestTemplate restTemplate = new RestTemplate(); //1
             HttpHeaders headers = new HttpHeaders();

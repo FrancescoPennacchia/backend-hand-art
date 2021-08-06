@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping("/api")
-public class RESTUtenteController {
+public class UserController {
 
 	@Value("${jwt.token.header}")
 	private String tokenHeader;

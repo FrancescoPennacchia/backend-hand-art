@@ -22,8 +22,9 @@ public class ArtistsController {
     @Value("${artsy.url}")
     private String url;
 
+    /* PARTE DEDICATA ALLE CHIAMATE REST */
     /* Richiesta per singolo artist by ID */
-    @RequestMapping("/artist/{idArtist}")
+    @RequestMapping("/rest/artist/{idArtist}")
     public String getArtistById(@PathVariable String idArtist) throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -36,7 +37,7 @@ public class ArtistsController {
     }
 
     /* Richiesta lista artists per size */
-    @RequestMapping("/artists/size")
+    @RequestMapping("/rest/artists/size")
     public String getArtistsBySize(@RequestParam int size) throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -49,7 +50,7 @@ public class ArtistsController {
     }
 
     /* Richiesta per singolo Artist random */
-    @RequestMapping("/artists/sample")
+    @RequestMapping("/rest/artists/sample")
     public String getRandomArtist() throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -62,7 +63,7 @@ public class ArtistsController {
     }
 
     /* Richiesta lista artists in base all'ordine */
-    @RequestMapping("/artists/sort")
+    @RequestMapping("/rest/artists/sort")
     public String getArtistsBySort(@RequestParam String sort) throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -75,7 +76,7 @@ public class ArtistsController {
     }
 
     /* Richiesta lista artists per offset */
-    @RequestMapping("/artists/offset")
+    @RequestMapping("/rest/artists/offset")
     public String getArtistsByOffset(@RequestParam int offset) throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -86,5 +87,7 @@ public class ArtistsController {
 
         return response.body().toString();
     }
+
+    /* PARTE DEDICATA ALLE CHIAMATE GRAPHQL */
 
 }
