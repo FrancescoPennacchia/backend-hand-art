@@ -13,7 +13,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/rest")
 public class ArtistsController {
 
     @Value("${artsy.X-XAPP-Token}")
@@ -22,12 +22,8 @@ public class ArtistsController {
     @Value("${artsy.rest.url}")
     private String url_rest;
 
-    @Value("${artsy.graphql.url}")
-    private String url_graphql;
-
-    /* PARTE DEDICATA ALLE CHIAMATE REST */
     /* Richiesta per singolo artist by ID */
-    @RequestMapping("/rest/artist/{idArtist}")
+    @RequestMapping("/artist/{idArtist}")
     public String getArtistById(@PathVariable String idArtist) throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -40,7 +36,7 @@ public class ArtistsController {
     }
 
     /* Richiesta lista artists per size */
-    @RequestMapping("/rest/artists/size")
+    @RequestMapping("/artists/size")
     public String getArtistsBySize(@RequestParam int size) throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -53,7 +49,7 @@ public class ArtistsController {
     }
 
     /* Richiesta per singolo Artist random */
-    @RequestMapping("/rest/artists/sample")
+    @RequestMapping("/artists/sample")
     public String getRandomArtist() throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -66,7 +62,7 @@ public class ArtistsController {
     }
 
     /* Richiesta lista artists in base all'ordine */
-    @RequestMapping("/rest/artists/sort")
+    @RequestMapping("/artists/sort")
     public String getArtistsBySort(@RequestParam String sort) throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -79,7 +75,7 @@ public class ArtistsController {
     }
 
     /* Richiesta lista artists per offset */
-    @RequestMapping("/rest/artists/offset")
+    @RequestMapping("/artists/offset")
     public String getArtistsByOffset(@RequestParam int offset) throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -90,7 +86,5 @@ public class ArtistsController {
 
         return response.body().toString();
     }
-
-    /* PARTE DEDICATA ALLE CHIAMATE GRAPHQL */
 
 }

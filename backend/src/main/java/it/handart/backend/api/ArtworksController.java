@@ -16,7 +16,7 @@ import java.net.http.HttpResponse;
 
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/rest")
 public class ArtworksController {
 
     @Value("${artsy.X-XAPP-Token}")
@@ -25,12 +25,8 @@ public class ArtworksController {
     @Value("${artsy.rest.url}")
     private String url_rest;
 
-    @Value("${artsy.graphql.url}")
-    private String url_graphql;
-
-    /* PARTE DEDICATA ALLE CHIAMATE REST */
     /* Richiesta lista artworks per size */
-    @RequestMapping("/rest/artworks/size")
+    @RequestMapping("/artworks/size")
     public String getArtworksBySize(@RequestParam int size) throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -43,7 +39,7 @@ public class ArtworksController {
     }
 
     /* Richiesta lista artworks */
-    @RequestMapping("/rest/artworks")
+    @RequestMapping("/artworks")
     public String getArtworks() throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -56,7 +52,7 @@ public class ArtworksController {
     }
 
     /* Richiesta per singolo Artwork */
-    @RequestMapping("/rest/artwork/{idArtwork}")
+    @RequestMapping("/artwork/{idArtwork}")
     public String getArtworkById(@PathVariable String idArtwork) throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -69,7 +65,7 @@ public class ArtworksController {
     }
 
     /* Richiesta per singolo Artwork random */
-    @RequestMapping("/rest/artwork/sample")
+    @RequestMapping("/artwork/sample")
     public String getRandomArtwork() throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -82,7 +78,7 @@ public class ArtworksController {
     }
 
     /* Richiesta lista artworks in base all'ordine */
-    @RequestMapping("/rest/artworks/sort")
+    @RequestMapping("/artworks/sort")
     public String getArtworksBySort(@RequestParam String sort) throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -95,7 +91,7 @@ public class ArtworksController {
     }
 
     /* Richiesta lista artworks per offset */
-    @RequestMapping("/rest/artworks/offset")
+    @RequestMapping("/artworks/offset")
     public String getArtworksByOffset(@RequestParam int offset) throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -106,8 +102,6 @@ public class ArtworksController {
 
         return response.body().toString();
     }
-
-    /* PARTE DEDICATA ALLE CHIAMATE GRAPHQL */
 
 }
 
