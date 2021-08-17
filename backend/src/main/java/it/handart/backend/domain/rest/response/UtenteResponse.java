@@ -1,7 +1,7 @@
-package it.handart.backend.domain.response;
+package it.handart.backend.domain.rest.response;
 
 
-import it.handart.backend.domain.Utente;
+import it.handart.backend.domain.rest.Utente;
 
 public class UtenteResponse {
 

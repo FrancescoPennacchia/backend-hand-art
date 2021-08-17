@@ -2,13 +2,11 @@ package it.handart.backend.business.repositories;
 
 import it.handart.backend.business.BusinessException;
 import it.handart.backend.business.HandArtService;
-import it.handart.backend.domain.Utente;
+import it.handart.backend.domain.rest.Utente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @Transactional

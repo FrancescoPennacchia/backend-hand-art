@@ -1,4 +1,4 @@
-package it.handart.backend.domain;
+package it.handart.backend.domain.rest;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

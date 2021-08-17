@@ -1,7 +1,7 @@
 package it.handart.backend.common;
 
 import it.handart.backend.common.spring.security.UserDetailsImpl;
-import it.handart.backend.domain.Utente;
+import it.handart.backend.domain.rest.Utente;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 

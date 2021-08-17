@@ -1,6 +1,6 @@
 package it.handart.backend;
 import it.handart.backend.business.repositories.*;
-import it.handart.backend.domain.Utente;
+import it.handart.backend.domain.rest.Utente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

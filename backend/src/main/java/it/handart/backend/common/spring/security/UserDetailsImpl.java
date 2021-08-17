@@ -1,7 +1,7 @@
 package it.handart.backend.common.spring.security;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import it.handart.backend.domain.Utente;
+import it.handart.backend.domain.rest.Utente;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;

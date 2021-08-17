@@ -1,7 +1,7 @@
 package it.handart.backend.common.spring.security;
 
 import it.handart.backend.business.HandArtService;
-import it.handart.backend.domain.Utente;
+import it.handart.backend.domain.rest.Utente;
 
 
 import org.springframework.beans.factory.annotation.Autowired;

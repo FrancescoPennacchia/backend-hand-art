@@ -1,10 +1,6 @@
-package it.handart.backend.domain.response;
+package it.handart.backend.domain.rest;
 
-import it.handart.backend.domain.Artwork;
-
-import java.io.Serializable;
-
-public class ArtworkResponse implements Serializable {
+public class Artwork {
 
     private String id;
     private String slug;
@@ -12,12 +8,12 @@ public class ArtworkResponse implements Serializable {
     private String category;
     private String date;
 
-    public ArtworkResponse(Artwork artwork){
-        this.id = artwork.getId();
-        this.slug = artwork.getSlug();
-        this.title = artwork.getTitle();
-        this.category = artwork.getCategory();
-        this.date = artwork.getDate();
+    public Artwork(String id, String slug, String title, String category, String date) {
+        this.id = id;
+        this.slug = slug;
+        this.title = title;
+        this.category = category;
+        this.date = date;
     }
 
     public String getId() {

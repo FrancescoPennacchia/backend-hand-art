@@ -4,9 +4,9 @@ import it.handart.backend.business.BusinessException;
 import it.handart.backend.business.HandArtService;
 import it.handart.backend.common.spring.security.JWTTokenUtil;
 import it.handart.backend.common.spring.security.UserDetailsImpl;
-import it.handart.backend.domain.Utente;
+import it.handart.backend.domain.rest.Utente;
 
-import it.handart.backend.domain.response.UtenteResponse;
+import it.handart.backend.domain.rest.response.UtenteResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
