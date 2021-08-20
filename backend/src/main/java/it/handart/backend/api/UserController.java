@@ -1,7 +1,7 @@
 package it.handart.backend.api;
 
 import it.handart.backend.business.BusinessException;
-import it.handart.backend.business.HandArtService;
+import it.handart.backend.business.HandArtUserService;
 import it.handart.backend.common.spring.security.JWTTokenUtil;
 import it.handart.backend.common.spring.security.UserDetailsImpl;
 import it.handart.backend.domain.rest.Utente;
@@ -38,7 +38,7 @@ public class UserController {
 	private JWTTokenUtil jwtTokenUtil;
 
 	@Autowired
-	private HandArtService handArtService;
+	private HandArtUserService handArtUserService;
 
 	@PostMapping("/login")
 	public UtenteResponse login(@RequestBody AuthenticationRequest authenticationRequest, HttpServletResponse response) throws AuthenticationException {
@@ -57,7 +57,7 @@ public class UserController {
 
 	@PostMapping("/utente/updateprofilo")
 	public UtenteResponse updateProfilo(@RequestBody Utente utente) {
-		Utente nuovoUtente = handArtService.updateProfilo(utente);
+		Utente nuovoUtente = handArtUserService.updateProfilo(utente);
 		return new UtenteResponse(nuovoUtente);
 	}
 
@@ -65,7 +65,7 @@ public class UserController {
 	public ResponseEntity<String> registerUtente(@RequestBody Utente utente) {
 
 		try {
-			Utente nuovoUtente = handArtService.registerUtente(utente);
+			Utente nuovoUtente = handArtUserService.registerUtente(utente);
 			return ResponseEntity
 					.status(HttpStatus.FORBIDDEN)
 					.body("Registered correctly "+ nuovoUtente.getUsername());

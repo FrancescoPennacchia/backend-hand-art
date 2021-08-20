@@ -1,7 +1,7 @@
 package it.handart.backend.business.repositories;
 
 import it.handart.backend.business.BusinessException;
-import it.handart.backend.business.HandArtService;
+import it.handart.backend.business.HandArtUserService;
 import it.handart.backend.domain.rest.Utente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class HandArtServiceImpl implements HandArtService {
+public class HandArtUserServiceImpl implements HandArtUserService {
 
 	@Autowired
 	private UtenteRepository utenteRepository;

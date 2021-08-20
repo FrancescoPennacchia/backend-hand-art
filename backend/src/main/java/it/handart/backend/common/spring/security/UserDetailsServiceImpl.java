@@ -1,6 +1,6 @@
 package it.handart.backend.common.spring.security;
 
-import it.handart.backend.business.HandArtService;
+import it.handart.backend.business.HandArtUserService;
 import it.handart.backend.domain.rest.Utente;
 
 
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Autowired
-	private HandArtService service;
+	private HandArtUserService service;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

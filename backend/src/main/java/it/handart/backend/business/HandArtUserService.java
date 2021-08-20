@@ -4,7 +4,7 @@ package it.handart.backend.business;
 import it.handart.backend.domain.rest.Utente;
 
 
-public interface HandArtService {
+public interface HandArtUserService {
 
 	Utente findUtenteByUsername(String username) throws BusinessException;
 
