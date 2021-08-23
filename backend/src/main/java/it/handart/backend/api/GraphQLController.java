@@ -47,4 +47,30 @@ public class GraphQLController {
         }
         return responseEntity.getResponse();
     }
+
+    /* Richiesta Artisti popolari */
+    @RequestMapping("/popular_artists")
+    public Artwork getPopularArtist(@RequestParam int size) throws MalformedURLException {
+
+        Map<String, String> headers = new HashMap<>();
+        headers.put("X-XAPP-Token", Token);
+
+        GraphQLTemplate graphQLTemplate = new GraphQLTemplate();
+
+        GraphQLRequestEntity requestEntity = GraphQLRequestEntity.Builder()
+                .url(url_graphql)
+                .headers(headers)
+                .arguments(new Arguments("popular_artists", new Argument<>("size", size)))
+                .request(Artwork.class)
+                .build();
+
+        GraphQLResponseEntity<Artwork> responseEntity = graphQLTemplate.query(requestEntity, Artwork.class);
+
+        if (responseEntity.getErrors() != null && responseEntity.getErrors().length > 0) {
+            Error error = responseEntity.getErrors()[0];
+            throw new GraphQLException(error.getMessage());
+        }
+        return responseEntity.getResponse();
+    }
+
 }
