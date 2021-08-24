@@ -4,6 +4,7 @@ import io.aexp.nodes.graphql.*;
 import io.aexp.nodes.graphql.exceptions.GraphQLException;
 import io.aexp.nodes.graphql.internal.Error;
 import it.handart.backend.domain.graph.artist.Artist;
+import it.handart.backend.domain.graph.artist.PopularArtists;
 import it.handart.backend.domain.graph.artwork.Artwork;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,7 +51,7 @@ public class GraphQLController {
     }
 
     /* Richiesta Artisti popolari */
-    @RequestMapping("/popular_artists")
+    @RequestMapping("/popular/artists")
     public List<Artist> getPopularArtist(@RequestParam int size) throws MalformedURLException {
 
         Map<String, String> headers = new HashMap<>();
@@ -64,11 +65,12 @@ public class GraphQLController {
                     .url(url_graphql)
                     .headers(headers)
                     .arguments(new Arguments("popular_artists", new Argument<>("size", size)))
-                    .request(Artist.class)
+                    .request(PopularArtists.class)
                     .build();
 
-            GraphQLResponseEntity<Artist> responseEntity = graphQLTemplate.query(requestEntity, Artist.class);
-            result = responseEntity.getResponse();
+            System.out.println(requestEntity.getRequest());
+            GraphQLResponseEntity<PopularArtists> responseEntity = graphQLTemplate.query(requestEntity, PopularArtists.class);
+            result = responseEntity.getResponse().getArtists();
         } catch (Exception e){
             e.printStackTrace();
         }
