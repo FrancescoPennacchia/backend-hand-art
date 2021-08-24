@@ -27,7 +27,7 @@ public class GraphQLController {
 
     /* Richiesta per singolo Artwork e Artist GraphQL*/
     @RequestMapping("/artwork")
-    public Artwork getArtworkAndArtistById(@RequestParam String idArtwork) throws MalformedURLException {
+    public Artwork getArtworkById(@RequestParam String idArtwork) throws MalformedURLException {
 
         Map<String, String> headers = new HashMap<>();
         headers.put("X-XAPP-Token", Token);
@@ -75,6 +75,31 @@ public class GraphQLController {
             e.printStackTrace();
         }
         return result;
+    }
+
+    /* Richiesta per singolo Artwork e Artist GraphQL*/
+    @RequestMapping("/artist")
+    public Artist getArtistById(@RequestParam String idArtist) throws MalformedURLException {
+
+        Map<String, String> headers = new HashMap<>();
+        headers.put("X-XAPP-Token", Token);
+
+        GraphQLTemplate graphQLTemplate = new GraphQLTemplate();
+
+        GraphQLRequestEntity requestEntity = GraphQLRequestEntity.Builder()
+                .url(url_graphql)
+                .headers(headers)
+                .arguments(new Arguments("artist", new Argument<>("id", idArtist)))
+                .request(Artist.class)
+                .build();
+
+        GraphQLResponseEntity<Artist> responseEntity = graphQLTemplate.query(requestEntity, Artist.class);
+
+        if (responseEntity.getErrors() != null && responseEntity.getErrors().length > 0) {
+            Error error = responseEntity.getErrors()[0];
+            throw new GraphQLException(error.getMessage());
+        }
+        return responseEntity.getResponse();
     }
 
 }

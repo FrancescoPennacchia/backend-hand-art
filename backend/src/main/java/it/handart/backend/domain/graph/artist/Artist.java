@@ -1,12 +1,13 @@
 package it.handart.backend.domain.graph.artist;
 
+import io.aexp.nodes.graphql.annotations.GraphQLArgument;
 import io.aexp.nodes.graphql.annotations.GraphQLProperty;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-@GraphQLProperty(name="artist")
+@GraphQLProperty(name="artist", arguments = @GraphQLArgument(name = "id"))
 public class Artist {
 
     private String id;
