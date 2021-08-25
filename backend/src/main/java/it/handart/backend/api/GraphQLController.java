@@ -4,6 +4,7 @@ import io.aexp.nodes.graphql.*;
 import io.aexp.nodes.graphql.exceptions.GraphQLException;
 import io.aexp.nodes.graphql.internal.Error;
 import it.handart.backend.domain.graph.artist.Artist;
+import it.handart.backend.domain.graph.artist.ArtistResponseList;
 import it.handart.backend.domain.graph.artist.PopularArtists;
 import it.handart.backend.domain.graph.artwork.Artwork;
 import org.springframework.beans.factory.annotation.Value;
@@ -100,6 +101,33 @@ public class GraphQLController {
             throw new GraphQLException(error.getMessage());
         }
         return responseEntity.getResponse();
+    }
+
+    /* Richiesta lista artisti */
+    @RequestMapping("/artists")
+    public List<Artist> getArtitsList(@RequestParam String size) throws MalformedURLException {
+
+        Map<String, String> headers = new HashMap<>();
+        headers.put("X-XAPP-Token", Token);
+
+        List<Artist> result = new ArrayList<>();
+
+        GraphQLTemplate graphQLTemplate = new GraphQLTemplate();
+        try {
+            GraphQLRequestEntity requestEntity = GraphQLRequestEntity.Builder()
+                    .url(url_graphql)
+                    .headers(headers)
+                    .arguments(new Arguments("artists", new Argument<>("size", size)))
+                    .request(ArtistResponseList.class)
+                    .build();
+
+            System.out.println(requestEntity.getRequest());
+            GraphQLResponseEntity<ArtistResponseList> responseEntity = graphQLTemplate.query(requestEntity, ArtistResponseList.class);
+            result = responseEntity.getResponse().getArtists();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return result;
     }
 
 }
