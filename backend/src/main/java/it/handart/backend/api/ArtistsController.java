@@ -37,7 +37,7 @@ public class ArtistsController {
 
     /* Richiesta lista artists per size */
     @RequestMapping("/artists/size")
-    public String getArtistsBySize(@RequestParam int size) throws IOException, InterruptedException {
+    public String getArtistsBySize(@RequestParam String size) throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create( url_rest + "/artists/?size=" + size ))
@@ -76,7 +76,7 @@ public class ArtistsController {
 
     /* Richiesta lista artists per offset */
     @RequestMapping("/artists/offset")
-    public String getArtistsByOffset(@RequestParam int offset) throws IOException, InterruptedException {
+    public String getArtistsByOffset(@RequestParam String offset) throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create( url_rest + "/artists/?offset=" + offset ))
