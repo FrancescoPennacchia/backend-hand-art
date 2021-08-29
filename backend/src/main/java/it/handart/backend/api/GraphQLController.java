@@ -105,7 +105,7 @@ public class GraphQLController {
 
     /* Richiesta lista artisti */
     @RequestMapping("/artists")
-    public List<Artist> getArtitsList(@RequestParam String size) throws MalformedURLException {
+    public List<Artist> getArtistsList(@RequestParam String size) throws MalformedURLException {
 
         Map<String, String> headers = new HashMap<>();
         headers.put("X-XAPP-Token", Token);
