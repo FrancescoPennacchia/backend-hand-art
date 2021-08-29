@@ -23,7 +23,7 @@ public class SearchController {
 
     /* Ricerca */
     @RequestMapping("/search/{value}")
-    public String getArtistById(@PathVariable String value) throws IOException, InterruptedException {
+    public String searchArtistArtwork(@PathVariable String value) throws IOException, InterruptedException {
 
         String withOutSpace;
         withOutSpace = value.replace(" ", "+"); //Rimozione degli spazi
