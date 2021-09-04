@@ -5,6 +5,8 @@ import it.handart.backend.domain.rest.Utente;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
+
+
 public class Utility {
 
 	public static Utente getUtente() {
@@ -16,6 +18,6 @@ public class Utility {
 		} else {
 			return null;
 		}
-		
+
 	}
 }

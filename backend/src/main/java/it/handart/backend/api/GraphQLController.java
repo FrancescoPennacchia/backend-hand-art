@@ -53,7 +53,7 @@ public class GraphQLController {
 
     /* Richiesta Artisti popolari */
     @RequestMapping("/popular/artists")
-    public List<Artist> getPopularArtist(@RequestParam int size) throws MalformedURLException {
+    public List<Artist> getPopularArtist(@RequestParam int size) {
 
         Map<String, String> headers = new HashMap<>();
         headers.put("X-XAPP-Token", Token);

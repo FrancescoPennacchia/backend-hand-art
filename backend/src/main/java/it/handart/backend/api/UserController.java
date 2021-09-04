@@ -7,6 +7,7 @@ import it.handart.backend.common.spring.security.UserDetailsImpl;
 import it.handart.backend.domain.rest.Utente;
 
 import it.handart.backend.domain.rest.response.UtenteResponse;
+import it.handart.backend.domain.rest.response.UtenteResponseToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -41,7 +42,7 @@ public class UserController {
 	private HandArtUserService handArtUserService;
 
 	@PostMapping("/login")
-	public UtenteResponse login(@RequestBody AuthenticationRequest authenticationRequest, HttpServletResponse response) throws AuthenticationException {
+	public UtenteResponseToken login(@RequestBody AuthenticationRequest authenticationRequest, HttpServletResponse response) throws AuthenticationException {
 		// Effettuo l'autenticazione
 		Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), authenticationRequest.getPassword()));
 		SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -51,8 +52,10 @@ public class UserController {
 		String token = jwtTokenUtil.generateToken(userDetails);
 		response.setHeader(tokenHeader, token);
 
+		System.out.println(response.getHeader(tokenHeader));
+
 		// Ritorno l'utente
-		return new UtenteResponse(((UserDetailsImpl) userDetails).getUtente());
+		return new UtenteResponseToken(((UserDetailsImpl) userDetails).getUtente(), token);
 	}
 
 	@PostMapping("/utente/updateprofilo")

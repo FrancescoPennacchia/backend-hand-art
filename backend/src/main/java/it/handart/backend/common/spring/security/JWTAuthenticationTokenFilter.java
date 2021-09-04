@@ -45,7 +45,7 @@ public class JWTAuthenticationTokenFilter extends OncePerRequestFilter {
 			String userName = jwtTokenUtil.getUsernameFromToken(authToken);
 			if (userName != null) {
 				userDetails = userDetailsService.loadUserByUsername(userName);
-			} 
+			}
 
 		}
 
