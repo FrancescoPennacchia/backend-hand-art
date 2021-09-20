@@ -35,14 +35,14 @@ public class GraphQLController {
 
         GraphQLTemplate graphQLTemplate = new GraphQLTemplate();
 
-        GraphQLRequestEntity requestEntity = GraphQLRequestEntity.Builder()
-                .url(url_graphql)
-                .headers(headers)
-                .arguments(new Arguments("artwork", new Argument<>("id", idArtwork)))
-                .request(Artwork.class)
+        GraphQLRequestEntity requestEntity = GraphQLRequestEntity.Builder()                            // Nuova richiesta GraphQL
+                .url(url_graphql)                                                                     // Setaggio url end point
+                .headers(headers)                                                                    // Header con token di autenticazione
+                .arguments(new Arguments("artwork", new Argument<>("id", idArtwork)))       // Argomenti della query e paramentri
+                .request(Artwork.class)                                                           // Ogetto richiesto Artwork
                 .build();
 
-        GraphQLResponseEntity<Artwork> responseEntity = graphQLTemplate.query(requestEntity, Artwork.class);
+        GraphQLResponseEntity<Artwork> responseEntity = graphQLTemplate.query(requestEntity, Artwork.class);    // Esecuzione query
 
         if (responseEntity.getErrors() != null && responseEntity.getErrors().length > 0) {
             Error error = responseEntity.getErrors()[0];
