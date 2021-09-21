@@ -22,6 +22,7 @@ public class Artwork {
     private String signature;
     private String literature;
     private String medium;
+    private String collecting_institution;
     private String date;
     private String additional_information;
 

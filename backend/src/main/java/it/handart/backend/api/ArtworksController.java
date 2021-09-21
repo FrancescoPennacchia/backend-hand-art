@@ -52,8 +52,8 @@ public class ArtworksController {
     }
 
     /* Richiesta per singolo Artwork */
-    @RequestMapping("/artwork/{idArtwork}")
-    public String getArtworkById(@PathVariable String idArtwork) throws IOException, InterruptedException {
+    @RequestMapping("/artwork")
+    public String getArtworkById(@RequestParam String idArtwork) throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create( url_rest + "/artworks/" + idArtwork))
