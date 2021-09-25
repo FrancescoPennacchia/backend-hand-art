@@ -10,6 +10,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
@@ -22,7 +24,16 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		if (utente == null) {
 			throw new UsernameNotFoundException("utente inesistente");
 		}
-		return new UserDetailsImpl(utente);
+		return org.springframework.security.core.userdetails.User
+				.withUsername(username)
+				.password(utente.getPassword())
+				.roles("USER")
+				.authorities(Collections.emptyList())
+				.accountExpired(false)
+				.accountLocked(false)
+				.credentialsExpired(false)
+				.disabled(false)
+				.build();
 
 	}
 

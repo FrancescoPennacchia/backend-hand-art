@@ -25,7 +25,7 @@ public class Utente {
 	@Column(name = "USERNAME", nullable = false, length = 16, updatable = false, unique = true)
 	private String username;
 
-	@JsonIgnore
+	//@JsonIgnore
 	@Column(name = "PASSWORD", nullable = false, length = 255)
 	private String password;
 	

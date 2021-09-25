@@ -76,9 +76,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().cors()
 				.and().authorizeRequests()
 				//Specificare le url che sono soggette ad autenticazione ed autorizzazione
+				.antMatchers( "/api/register/**", "/api/register", "/register", "/register/**").permitAll()
 				.antMatchers("/", "/*.html", "/favicon.ico", "/**/*.html", "/**/*.css", "/**/*.js", "/api/login/**").permitAll()
 				.antMatchers("/api/utente/**").authenticated();
-			
+
 
 		// Filtro Custom JWT
 		httpSecurity.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);

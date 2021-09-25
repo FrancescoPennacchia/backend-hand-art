@@ -8,6 +8,7 @@ import it.handart.backend.domain.graph.artist.ArtistResponseList;
 import it.handart.backend.domain.graph.artist.PopularArtists;
 import it.handart.backend.domain.graph.artwork.Artwork;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.net.MalformedURLException;
 import java.util.*;
 
-
+@CrossOrigin
 @RestController
 @RequestMapping("/api/graph")
 public class GraphQLController {
