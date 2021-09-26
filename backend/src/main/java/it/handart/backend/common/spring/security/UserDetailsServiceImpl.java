@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 
+import static java.util.Collections.emptyList;
+
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
@@ -24,16 +26,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		if (utente == null) {
 			throw new UsernameNotFoundException("utente inesistente");
 		}
-		return org.springframework.security.core.userdetails.User
-				.withUsername(username)
-				.password(utente.getPassword())
-				.roles("USER")
-				.authorities(Collections.emptyList())
-				.accountExpired(false)
-				.accountLocked(false)
-				.credentialsExpired(false)
-				.disabled(false)
-				.build();
+		return new UserDetailsImpl(utente);
 
 	}
 

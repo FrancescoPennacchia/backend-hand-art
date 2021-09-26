@@ -41,20 +41,21 @@ public class UserDetailsImpl implements UserDetails {
 		return true;
 	}
 
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		List<GrantedAuthority> result = new ArrayList<>();
-
-		GrantedAuthorityImpl authorityImpl = new GrantedAuthorityImpl("utente"); //TEST
-		result.add(authorityImpl);
-
-		return result;
-	}
-
 	@JsonIgnore
 	@Override
 	public String getPassword() {
 		return utente.getPassword();
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		List<GrantedAuthority> result = new ArrayList<>();
+
+
+		GrantedAuthorityImpl authorityImpl = new GrantedAuthorityImpl("USER");
+		result.add(authorityImpl);
+
+		return result;
 	}
 
 	@Override
