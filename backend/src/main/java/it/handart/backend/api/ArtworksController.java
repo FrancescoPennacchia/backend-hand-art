@@ -1,5 +1,9 @@
 package it.handart.backend.api;
 
+import it.handart.backend.business.HandArtArtworkService;
+import it.handart.backend.domain.rest.ArtistaPreferito;
+import it.handart.backend.domain.rest.OperaPreferita;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 import org.springframework.web.bind.annotation.*;
@@ -10,11 +14,15 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.List;
 
 @CrossOrigin
 @RestController
 @RequestMapping("/api/rest")
 public class ArtworksController {
+
+    @Autowired
+    private HandArtArtworkService service;
 
     @Value("${artsy.X-XAPP-Token}")
     private String Token;
@@ -99,6 +107,26 @@ public class ArtworksController {
 
         return response.body().toString();
     }
+
+    /* Aggiungi opera favorito */
+    @PostMapping("\")
+    public void addArtwork(@RequestBody OperaPreferita opera) {
+        service.addFavoriteArtwork(opera);
+    }
+
+    /* Cancella opera favorito */
+    @DeleteMapping("/delete/artwork/favorite")
+    public void deleteArtwork(@RequestBody OperaPreferita opera) {
+        service.deleteFavoriteArtwork(opera);
+    }
+
+    /* Lista opere favorite */
+
+    /*
+    @GetMapping("/get/artwork/favorite")
+    public List<OperaPreferita> getFavoriteArtwork(long  id) {
+        return service.getFavoriteArtwork(id);
+    }*/
 
 }
 

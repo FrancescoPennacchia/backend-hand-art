@@ -1,4 +1,4 @@
-package it.handart.backend.business.repositories;
+package it.handart.backend.business.impl;
 
 import io.aexp.nodes.graphql.*;
 import io.aexp.nodes.graphql.exceptions.GraphQLException;

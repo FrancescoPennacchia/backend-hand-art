@@ -1,7 +1,8 @@
-package it.handart.backend.business.repositories;
+package it.handart.backend.business.impl;
 
 import it.handart.backend.business.BusinessException;
 import it.handart.backend.business.HandArtUserService;
+import it.handart.backend.business.repositories.UtenteRepository;
 import it.handart.backend.domain.rest.Utente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;

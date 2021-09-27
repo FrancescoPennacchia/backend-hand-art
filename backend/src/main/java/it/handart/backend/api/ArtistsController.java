@@ -1,5 +1,8 @@
 package it.handart.backend.api;
 
+import it.handart.backend.business.HandArtArtistService;
+import it.handart.backend.domain.rest.ArtistaPreferito;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +16,9 @@ import java.net.http.HttpResponse;
 @RestController
 @RequestMapping("/api/rest")
 public class ArtistsController {
+
+    @Autowired
+    private HandArtArtistService service;
 
     @Value("${artsy.X-XAPP-Token}")
     private String Token;
@@ -83,6 +89,18 @@ public class ArtistsController {
         HttpResponse response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
         return response.body().toString();
+    }
+
+    /* Aggiungi artista favorito */
+    @PostMapping("/add/artist")
+    public void addArtist(@RequestBody ArtistaPreferito artista) {
+        service.addFavoriteArtist(artista);
+    }
+
+    /* Cancella artista favorito */
+    @DeleteMapping("/delete/artist")
+    public void deleteArtist(@RequestBody ArtistaPreferito artista) {
+        service.deleteFavoriteArtist(artista);
     }
 
 }
