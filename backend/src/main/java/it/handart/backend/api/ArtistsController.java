@@ -93,18 +93,18 @@ public class ArtistsController {
     }
 
     /* Aggiungi artista favorito */
-    @PostMapping("/add/artist")
+    @PostMapping("/add/artist/favorite")
     public void addArtist(@RequestBody ArtistaPreferito artista) {
         service.addFavoriteArtist(artista);
     }
 
     /* Cancella artista favorito */
-    @DeleteMapping("/delete/artist")
+    @DeleteMapping("/delete/artist/favorite")
     public void deleteArtist(@RequestParam long idUtente) {
         service.deleteFavoriteArtist(idUtente);
     }
 
-    @RequestMapping("/get/favorie/artist")
+    @RequestMapping("/get/artist/favorite")
     public List<ArtistaPreferito> getFavoriteArtist(@RequestParam long idUtente){
         return service.getFavoriteArtists(idUtente);
     }
