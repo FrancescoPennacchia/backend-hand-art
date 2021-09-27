@@ -20,8 +20,8 @@ public class HandArtArtworkService implements it.handart.backend.business.HandAr
 
 
     @Override
-    public void deleteFavoriteArtwork(OperaPreferita opera) throws BusinessException {
-        artworkRepository.delete(opera);
+    public void deleteFavoriteArtwork(long idOpera) throws BusinessException {
+        artworkRepository.deleteById(idOpera);
     }
 
     @Override
@@ -29,9 +29,9 @@ public class HandArtArtworkService implements it.handart.backend.business.HandAr
         artworkRepository.save(opera);
     }
 
-    /*
+
     @Override
     public List<OperaPreferita> getFavoriteArtwork(Long idUtente) throws BusinessException {
        return artworkRepository.getFavoriteArtwork(idUtente);
-    }*/
+    }
 }

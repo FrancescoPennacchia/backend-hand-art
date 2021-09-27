@@ -7,10 +7,10 @@ import java.util.List;
 
 public interface HandArtArtworkService {
 
-    void deleteFavoriteArtwork(OperaPreferita opera) throws BusinessException;
+    void deleteFavoriteArtwork(long  idOperaPreferita) throws BusinessException;
 
     void addFavoriteArtwork(OperaPreferita opera) throws BusinessException;
 
-    // List<OperaPreferita> getFavoriteArtwork(Long idUtente) throws BusinessException;
+    List<OperaPreferita> getFavoriteArtwork(Long idUtente) throws BusinessException;
 
 }

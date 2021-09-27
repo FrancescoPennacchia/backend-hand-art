@@ -109,31 +109,31 @@ public class ArtworksController {
     }
 
     /* Aggiungi opera favorito */
-    @PostMapping("\")
+    @PostMapping("/add/artwork/favorite")
     public void addArtwork(@RequestBody OperaPreferita opera) {
         service.addFavoriteArtwork(opera);
     }
 
     /* Cancella opera favorito */
     @DeleteMapping("/delete/artwork/favorite")
-    public void deleteArtwork(@RequestBody OperaPreferita opera) {
-        service.deleteFavoriteArtwork(opera);
+    public void deleteArtwork(@RequestParam long  idOperaPreferita) {
+        service.deleteFavoriteArtwork(idOperaPreferita);
     }
 
     /* Lista opere favorite */
 
-    /*
-    @GetMapping("/get/artwork/favorite")
-    public List<OperaPreferita> getFavoriteArtwork(long  id) {
+
+    @RequestMapping("/get/artwork/favorite")
+    public List<OperaPreferita> getFavoriteArtwork(@RequestParam long  id) {
         return service.getFavoriteArtwork(id);
-    }*/
+    }
 
 }
 
 
         /* VECCHIO CODICE DI RICHIESTA */
         /*
-            RestTemplate restTemplate = new RestTemplate(); //1
+            RestTemplate restTemplate = new RestTemplate(); / /1
             HttpHeaders headers = new HttpHeaders();
             headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
             headers.add("X-XAPP-Token", Toke);
