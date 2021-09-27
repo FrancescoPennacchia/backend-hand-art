@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class HandArtArtistService implements it.handart.backend.business.HandArtArtistService {
@@ -15,12 +17,19 @@ public class HandArtArtistService implements it.handart.backend.business.HandArt
     private ArtistRepository artistRepository;
 
     @Override
-    public void deleteFavoriteArtist(ArtistaPreferito artista) throws BusinessException {
-        artistRepository.delete(artista);
+    public void deleteFavoriteArtist(Long idUtente) throws BusinessException {
+        artistRepository.deleteById(idUtente);
     }
 
     @Override
     public void addFavoriteArtist(ArtistaPreferito artista) throws BusinessException {
         artistRepository.save(artista);
     }
+
+    @Override
+    public List<ArtistaPreferito> getFavoriteArtists(Long idUtente) throws BusinessException {
+        return artistRepository.getFavoriteArtist(idUtente);
+    }
+
+
 }

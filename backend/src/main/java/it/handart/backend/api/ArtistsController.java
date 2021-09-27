@@ -11,6 +11,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.List;
 
 @CrossOrigin
 @RestController
@@ -99,8 +100,13 @@ public class ArtistsController {
 
     /* Cancella artista favorito */
     @DeleteMapping("/delete/artist")
-    public void deleteArtist(@RequestBody ArtistaPreferito artista) {
-        service.deleteFavoriteArtist(artista);
+    public void deleteArtist(@RequestParam long idUtente) {
+        service.deleteFavoriteArtist(idUtente);
+    }
+
+    @RequestMapping("/get/favorie/artist")
+    public List<ArtistaPreferito> getFavoriteArtist(@RequestParam long idUtente){
+        return service.getFavoriteArtists(idUtente);
     }
 
 }
