@@ -105,12 +105,13 @@ public class ArtistsController {
     }
 
     @RequestMapping("/get/artists/favorites")
-    public List<ArtistaPreferito> getFavoritesArtists(@RequestParam Long idUtente){
+    public List<ArtistaPreferito> getFavoritesArtists(@RequestParam long idUtente){
         return service.getFavoritesArtists( idUtente );
     }
 
     @RequestMapping("/get/artist/favorite")
-    public ArtistaPreferito getFavoriteArtist(@RequestParam Long idUtente, @RequestParam String idAutore) {
+    public ArtistaPreferito getFavoriteArtist(@RequestParam long idUtente, @RequestParam String idAutore) {
+         // System.out.println(idUtente + idAutore);
         return service.getFavoriteArtist( idUtente, idAutore );
     }
 

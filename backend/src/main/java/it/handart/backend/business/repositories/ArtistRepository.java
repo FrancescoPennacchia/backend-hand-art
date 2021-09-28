@@ -14,6 +14,6 @@ public interface ArtistRepository extends JpaRepository<ArtistaPreferito, Long> 
     List<ArtistaPreferito> getFavoritesArtists(@Param("id") long idUtente );
 
     @Query("SELECT o FROM ArtistaPreferito o WHERE o.id_autore = :idAutore AND o.id_utente = :idUtente")
-    ArtistaPreferito getFavoriteArtist(@Param("idAutore") String idAutore, @Param("idUtente") Long idUtente );
+    ArtistaPreferito getFavoriteArtist(@Param("idAutore") String idAutore, @Param("idUtente") long idUtente );
 
 }

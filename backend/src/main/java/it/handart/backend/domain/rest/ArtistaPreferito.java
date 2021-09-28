@@ -11,7 +11,7 @@ public class ArtistaPreferito {
     private Long id;
 
     @Column(name = "idAutorePreferito", nullable = false)
-    private Long id_autore;
+    private String id_autore;
 
     @Column(name = "nomeAutore", nullable = false)
     private String nome;
@@ -30,11 +30,11 @@ public class ArtistaPreferito {
         this.id = id;
     }
 
-    public Long getId_autore() {
+    public String getId_autore() {
         return id_autore;
     }
 
-    public void setId_autore(Long id_autore) {
+    public void setId_autore(String id_autore) {
         this.id_autore = id_autore;
     }
 

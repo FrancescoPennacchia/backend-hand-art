@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface HandArtArtistService {
 
-    void deleteFavoriteArtist(Long idUtene) throws BusinessException;
+    void deleteFavoriteArtist(Long idUtente) throws BusinessException;
 
     void addFavoriteArtist(ArtistaPreferito artista) throws BusinessException;
 
