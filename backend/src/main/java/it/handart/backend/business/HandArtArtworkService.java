@@ -11,6 +11,8 @@ public interface HandArtArtworkService {
 
     void addFavoriteArtwork(OperaPreferita opera) throws BusinessException;
 
-    List<OperaPreferita> getFavoriteArtwork(Long idUtente) throws BusinessException;
+    List<OperaPreferita> getFavoritesArtworks(Long idUtente) throws BusinessException;
+
+    OperaPreferita getFavoriteArtwork(String idOpera, Long idUtente) throws BusinessException;
 
 }

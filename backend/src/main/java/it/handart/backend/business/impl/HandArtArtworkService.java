@@ -31,7 +31,12 @@ public class HandArtArtworkService implements it.handart.backend.business.HandAr
 
 
     @Override
-    public List<OperaPreferita> getFavoriteArtwork(Long idUtente) throws BusinessException {
-       return artworkRepository.getFavoriteArtwork(idUtente);
+    public List<OperaPreferita> getFavoritesArtworks(Long idUtente) throws BusinessException {
+       return artworkRepository.getFavoritesArtworks(idUtente);
+    }
+
+    @Override
+    public OperaPreferita getFavoriteArtwork(String idOpera, Long idUtente) throws BusinessException {
+        return artworkRepository.getFavoriteArtwork(idOpera, idUtente);
     }
 }

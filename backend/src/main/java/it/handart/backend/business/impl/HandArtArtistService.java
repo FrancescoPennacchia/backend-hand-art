@@ -27,8 +27,13 @@ public class HandArtArtistService implements it.handart.backend.business.HandArt
     }
 
     @Override
-    public List<ArtistaPreferito> getFavoriteArtists(Long idUtente) throws BusinessException {
-        return artistRepository.getFavoriteArtist(idUtente);
+    public List<ArtistaPreferito> getFavoritesArtists(Long idUtente) throws BusinessException {
+        return artistRepository.getFavoritesArtists(idUtente);
+    }
+
+    @Override
+    public ArtistaPreferito getFavoriteArtist(Long idUtente, String idAutore) throws BusinessException {
+        return artistRepository.getFavoriteArtist(idAutore, idUtente);
     }
 
 

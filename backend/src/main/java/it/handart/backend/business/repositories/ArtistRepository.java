@@ -10,7 +10,10 @@ import java.util.List;
 
 public interface ArtistRepository extends JpaRepository<ArtistaPreferito, Long> {
 
-    @Query("SELECT o FROM ArtistaPreferito o WHERE o.utente.id = :id")
-    List<ArtistaPreferito> getFavoriteArtist(@Param("id") long idUtente );
+    @Query("SELECT o FROM ArtistaPreferito o WHERE o.id_utente = :id")
+    List<ArtistaPreferito> getFavoritesArtists(@Param("id") long idUtente );
+
+    @Query("SELECT o FROM ArtistaPreferito o WHERE o.id_autore = :idAutore AND o.id_utente = :idUtente")
+    ArtistaPreferito getFavoriteArtist(@Param("idAutore") String idAutore, @Param("idUtente") Long idUtente );
 
 }

@@ -19,9 +19,8 @@ public class ArtistaPreferito {
     @Column(name = "imageAutore", nullable = false)
     private String image;
 
-    @ManyToOne
-    @JoinColumn(name = "ID_UTENTE", nullable = false)
-    private Utente utente;
+    @Column(name = "id_utente", nullable = false)
+    private Long id_utente;
 
     public Long getId() {
         return id;
@@ -55,11 +54,11 @@ public class ArtistaPreferito {
         this.image = image;
     }
 
-    public Utente getUtente() {
-        return utente;
+    public Long getId_utente() {
+        return id_utente;
     }
 
-    public void setUtente(Utente utente) {
-        this.utente = utente;
+    public void setId_utente(Long id_utente) {
+        this.id_utente = id_utente;
     }
 }

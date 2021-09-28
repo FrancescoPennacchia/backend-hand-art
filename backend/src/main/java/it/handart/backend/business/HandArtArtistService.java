@@ -10,5 +10,8 @@ public interface HandArtArtistService {
 
     void addFavoriteArtist(ArtistaPreferito artista) throws BusinessException;
 
-    List<ArtistaPreferito> getFavoriteArtists(Long idUtente)throws BusinessException;
+    List<ArtistaPreferito> getFavoritesArtists(Long idUtente) throws BusinessException;
+
+    ArtistaPreferito getFavoriteArtist(Long idUtente, String idAutore) throws  BusinessException;
+
 }

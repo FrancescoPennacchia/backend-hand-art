@@ -104,9 +104,14 @@ public class ArtistsController {
         service.deleteFavoriteArtist(idUtente);
     }
 
+    @RequestMapping("/get/artists/favorites")
+    public List<ArtistaPreferito> getFavoritesArtists(@RequestParam Long idUtente){
+        return service.getFavoritesArtists( idUtente );
+    }
+
     @RequestMapping("/get/artist/favorite")
-    public List<ArtistaPreferito> getFavoriteArtist(@RequestParam long idUtente){
-        return service.getFavoriteArtists(idUtente);
+    public ArtistaPreferito getFavoriteArtist(@RequestParam Long idUtente, @RequestParam String idAutore) {
+        return service.getFavoriteArtist( idUtente, idAutore );
     }
 
 }

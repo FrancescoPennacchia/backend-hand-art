@@ -123,10 +123,17 @@ public class ArtworksController {
     /* Lista opere favorite */
 
 
-    @RequestMapping("/get/artwork/favorite")
-    public List<OperaPreferita> getFavoriteArtwork(@RequestParam long  id) {
-        return service.getFavoriteArtwork(id);
+
+    @RequestMapping("/get/artworks/favorites")
+    public List<OperaPreferita> getFavoritesArtworks(@RequestParam long  id) {
+        return service.getFavoritesArtworks(id);
     }
+
+    @RequestMapping("/get/artwork/favorite")
+    public OperaPreferita getFavoriteArtwork(@RequestParam long  idUtente, @RequestParam String idOpera) {
+        return service.getFavoriteArtwork(idOpera, idUtente);
+    }
+
 
 }
 
