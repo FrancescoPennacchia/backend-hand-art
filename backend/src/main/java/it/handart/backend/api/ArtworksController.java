@@ -43,6 +43,32 @@ public class ArtworksController {
         return response.body().toString();
     }
 
+    /* Richiesta lista artworks per genere */
+    @RequestMapping("/artworks/genes")
+    public String getArtworksByGenes(@RequestParam int size, @RequestParam String genes) throws IOException, InterruptedException {
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create( url_rest + "/artworks/?genes=" + genes + "&size=" + size ))
+                .headers("X-XAPP-Token", Token)
+                .build();
+        HttpResponse response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        return response.body().toString();
+    }
+
+    /* Richiesta lista generi */
+    @RequestMapping("/genes")
+    public String getGenes(@RequestParam int size) throws IOException, InterruptedException {
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create( url_rest + "/genes?size=" + size ))
+                .headers("X-XAPP-Token", Token)
+                .build();
+        HttpResponse response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        return response.body().toString();
+    }
+
     /* Richiesta lista artworks */
     @RequestMapping("/artworks")
     public String getArtworks() throws IOException, InterruptedException {
