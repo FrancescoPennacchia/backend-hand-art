@@ -1,10 +1,7 @@
 package it.handart.backend.api;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.net.URI;
@@ -24,8 +21,8 @@ public class SearchController {
     private String url_rest;
 
     /* Ricerca */
-    @RequestMapping("/search/{value}")
-    public String searchArtistArtwork(@PathVariable String value) throws IOException, InterruptedException {
+    @RequestMapping("/search")
+    public String searchArtistArtwork(@RequestParam String value) throws IOException, InterruptedException {
 
         String withOutSpace;
         withOutSpace = value.replace(" ", "+"); //Rimozione degli spazi
