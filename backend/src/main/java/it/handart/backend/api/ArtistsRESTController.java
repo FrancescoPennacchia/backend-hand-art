@@ -43,12 +43,12 @@ public class ArtistsRESTController {
     /* Richiesta lista artists per size */
     @RequestMapping("/artists/size")
     public String getArtistsBySize(@RequestParam String size) throws IOException, InterruptedException {
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create( url_rest + "/artists/?size=" + size ))
-                .headers("X-XAPP-Token", Token)
+        HttpClient client = HttpClient.newHttpClient();                         // Nuova richiesta HTTP
+        HttpRequest request = HttpRequest.newBuilder()                          // Costruiamo la richiesta HTTP
+                .uri(URI.create( url_rest + "/artists/?size=" + size ))         // URI della richiesta
+                .headers("X-XAPP-Token", Token)                                 // HEADERS
                 .build();
-        HttpResponse response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        HttpResponse response = client.send(request, HttpResponse.BodyHandlers.ofString());  //Effettua la richiesta
 
         return response.body().toString();
     }
