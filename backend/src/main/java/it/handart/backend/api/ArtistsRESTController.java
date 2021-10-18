@@ -16,7 +16,7 @@ import java.util.List;
 @CrossOrigin
 @RestController
 @RequestMapping("/api/rest")
-public class ArtistsController {
+public class ArtistsRESTController {
 
     @Autowired
     private HandArtArtistService service;

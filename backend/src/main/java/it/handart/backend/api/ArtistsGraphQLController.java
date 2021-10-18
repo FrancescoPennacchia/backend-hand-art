@@ -19,38 +19,13 @@ import java.util.*;
 @CrossOrigin
 @RestController
 @RequestMapping("/api/graph")
-public class GraphQLController {
+public class ArtistsGraphQLController {
 
     @Value("${artsy.X-XAPP-Token}")
     private String Token;
 
     @Value("${artsy.graphql.url}")
     private String url_graphql;
-
-    /* Richiesta per singolo Artwork e Artist GraphQL*/
-    @RequestMapping("/artwork")
-    public Artwork getArtworkById(@RequestParam String idArtwork) throws MalformedURLException {
-
-        Map<String, String> headers = new HashMap<>();
-        headers.put("X-XAPP-Token", Token);
-
-        GraphQLTemplate graphQLTemplate = new GraphQLTemplate();
-
-        GraphQLRequestEntity requestEntity = GraphQLRequestEntity.Builder()                            // Nuova richiesta GraphQL
-                .url(url_graphql)                                                                     // Setaggio url end point
-                .headers(headers)                                                                    // Header con token di autenticazione
-                .arguments(new Arguments("artwork", new Argument<>("id", idArtwork)))       // Argomenti della query e paramentri
-                .request(Artwork.class)                                                           // Ogetto richiesto Artwork
-                .build();
-
-        GraphQLResponseEntity<Artwork> responseEntity = graphQLTemplate.query(requestEntity, Artwork.class);    // Esecuzione query
-
-        if (responseEntity.getErrors() != null && responseEntity.getErrors().length > 0) {
-            Error error = responseEntity.getErrors()[0];
-            throw new GraphQLException(error.getMessage());
-        }
-        return responseEntity.getResponse();
-    }
 
     /* Richiesta Artisti popolari */
     @RequestMapping("/popular/artists")

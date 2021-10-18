@@ -19,7 +19,7 @@ import java.util.List;
 @CrossOrigin
 @RestController
 @RequestMapping("/api/rest")
-public class ArtworksController {
+public class ArtworksRESTController {
 
     @Autowired
     private HandArtArtworkService service;
